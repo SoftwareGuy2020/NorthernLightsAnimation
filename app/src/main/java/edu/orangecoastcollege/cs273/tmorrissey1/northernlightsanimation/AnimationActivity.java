@@ -8,6 +8,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+/**
+ * controller for activity_animation.xml
+ * @author Travis Morrissey
+ */
 public class AnimationActivity extends AppCompatActivity {
 
     private AnimationDrawable frameAnim;
@@ -16,6 +20,10 @@ public class AnimationActivity extends AppCompatActivity {
     private Animation customAnim;
     private ImageView lightsImageView;
 
+    /**
+     * Perform initialization of all fragments and loaders.
+     * @param savedInstanceState last saved instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +33,10 @@ public class AnimationActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Toggles the frame animation
+     * @param v the view that was clicked
+     */
     public void toggleFrameAnim(View v) {
         // Programmatically set the background of image view to @drawable/lights1
         lightsImageView.setBackgroundResource(R.drawable.frame_anim);
@@ -38,6 +50,10 @@ public class AnimationActivity extends AppCompatActivity {
             frameAnim.start();
     }
 
+    /**
+     * Toggles the rotate animation
+     * @param v the view that was clicked
+     */
     public void toggleRotateAnim(View v) {
 
         rotateAnim = AnimationUtils.loadAnimation(this, R.anim.rotate_anim);
@@ -49,11 +65,29 @@ public class AnimationActivity extends AppCompatActivity {
             lightsImageView.startAnimation(rotateAnim);
     }
 
+    /**
+     * Toggles the shake animation
+     * @param v the view that was clicked
+     */
     public void toggleShakeAnim(View v) {
         shakeAnim = AnimationUtils.loadAnimation(this, R.anim.shake_anim);
         if (shakeAnim.hasStarted())
             lightsImageView.clearAnimation();
         else
             lightsImageView.startAnimation(shakeAnim);
+    }
+
+    /**
+     * Toggles the custom animation
+     * @param v the view that was clicked
+     */
+    public void toggleCustomAnim(View v) {
+        customAnim = AnimationUtils.loadAnimation(this,R.anim.custom_anim);
+
+        if (customAnim.hasStarted())
+            lightsImageView.clearAnimation();
+
+        else
+            lightsImageView.startAnimation(customAnim);
     }
 }
